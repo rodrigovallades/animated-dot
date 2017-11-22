@@ -5,6 +5,7 @@ var board = document.querySelector('.board');
 var squares = document.querySelectorAll('.board .square');
 var log = document.querySelector('.log tbody');
 
+// binding events to the page elements
 startButton.addEventListener('click', function(e) {    
     if (!moving) {
         start();
@@ -18,17 +19,20 @@ stopButton.addEventListener('click', function(e) {
 
 board.addEventListener('click', function(e) {
     if (moving) {
-        stop();
-        start();
+        stop(); // if the timer is active, reset it
+        start(); // start it again
     }
     if (e.target.classList.contains('square')) {        
         move(e.target);
     }
 });
 
+// this function just moves to the next square, but if you provide a target square, it uses it instead
 function move(target) {
     var piece = document.querySelector('.square.piece');
+    // if target is provided, use it. If not, move to the next square
     var target = target ? target : piece.nextElementSibling;
+    // if the target is null, it means there is no next square. We reached the end of the animation
     if (target) {        
         piece.classList.remove('piece');
         target.classList.add('piece');
@@ -39,6 +43,7 @@ function move(target) {
     }
 };
 
+// starts moving the dot and triggers a 1 second timer
 function start() {    
     moving = setInterval(function() {
         move();        
@@ -46,12 +51,14 @@ function start() {
     logMessage('timer started');
 };
 
+// stops the timer
 function stop() {    
     clearInterval(moving);
     moving = null;
     logMessage('timer cleared');
 };
 
+// logs message to the screen and console
 function logMessage(message) {
     console.log(message);
     logMsg = document.createElement('tr');

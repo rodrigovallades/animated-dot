@@ -16,15 +16,18 @@ $(document).on('click', function(e){
     // move to target
     if ($(e.target).hasClass('square')) {
         if (moving) {
-            stop();        
-            start();
+            stop(); // if the timer is active, reset it 
+            start();  // start it again
         }
         move(e.target);
     }
 });
 
+// this function just moves to the next square, but if you provide a target square, it uses it instead
 function move(target) {
+    // if target is provided, use it. If not, move to the next square
     var target = target ? target : $('.square.piece').next('.square');
+    // if the target is not provided or there is no next square, we reached the end of the animation
     if (target.length || target.outerHTML) {
         $('.square.piece').removeClass('piece');
         $(target).addClass('piece');         
@@ -35,6 +38,7 @@ function move(target) {
     }
 };
 
+// starts moving the dot and triggers a 1 second timer
 function start() {    
     moving = setInterval(function() {
         move();
@@ -42,12 +46,14 @@ function start() {
     logMessage('timer started');    
 };
 
+// stops the timer
 function stop() {    
     clearInterval(moving);
     moving = null;
     logMessage('timer cleared');    
 };
 
+// logs message to the screen and console
 function logMessage(message) {
     console.log(message);
     $('.log tbody').prepend('<tr><td>' + message + '</td></tr>')
