@@ -1,0 +1,36 @@
+.board {
+    width: 350px;
+    background-color: orange;
+    float: left;
+    padding: 0 0 10px 10px;
+}
+.board .square {
+    background-color: white;
+    width: 60px;
+    height: 60px;
+    margin: 10px 10px 0 0;
+    float: left;
+    cursor: pointer;
+}
+.board .square.piece:before {
+    content: '•';
+    color: black;
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    display: block;
+    font-size: 80px;
+}
+
+.log {
+    font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New;
+    font-size: 14px;
+    width: 350px;
+    height: 350px;
+    background-color:#ccc;
+    float: left;
+    padding: 10px;
+    margin: 0 0 0 10px;    
+    overflow: auto;
+}
