@@ -19,8 +19,10 @@ stopButton.addEventListener('click', function(e) {
 
 board.addEventListener('click', function(e) {
     if (moving) {
-        stop(); // if the timer is active, reset it
-        start(); // start it again
+        // if the timer is active, reset it
+        stop();
+        // start it again
+        start();
     }
     if (e.target.classList.contains('square')) {        
         move(e.target);

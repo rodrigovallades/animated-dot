@@ -16,8 +16,10 @@ $(document).on('click', function(e){
     // move to target
     if ($(e.target).hasClass('square')) {
         if (moving) {
-            stop(); // if the timer is active, reset it 
-            start();  // start it again
+            // if the timer is active, reset it
+            stop();
+            // start it again
+            start();
         }
         move(e.target);
     }
