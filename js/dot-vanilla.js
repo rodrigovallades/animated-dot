@@ -3,7 +3,6 @@ var startButton = document.querySelector('#run');
 var stopButton = document.querySelector('#stop');
 var board = document.querySelector('.board');
 var squares = document.querySelectorAll('.board .square');
-var log = document.querySelector('.log tbody');
 
 // binding events to the page elements
 startButton.addEventListener('click', function(e) {    
@@ -67,5 +66,21 @@ function logMessage(message) {
     logMsgTD = document.createElement('td');
     logMsgTD.textContent = message;
     logMsg.appendChild(logMsgTD);
-    log.insertBefore(logMsg, log.childNodes[0]);
+    debug.insertBefore(logMsg, debug.childNodes[0]);
 }
+
+(function(global) {
+    var debug = document.querySelector('.debug tbody');
+    
+    // logs message to the screen and console
+    function logMessage(message) {
+        console.log(message);
+        logMsg = document.createElement('tr');
+        logMsgTD = document.createElement('td');
+        logMsgTD.textContent = message;
+        logMsg.appendChild(logMsgTD);
+        debug.insertBefore(logMsg, debug.childNodes[0]);
+    }
+    // Exposing the function to the global object ('window' passed in the IIFE)
+    global.logMessage = logMessage;
+}(window));

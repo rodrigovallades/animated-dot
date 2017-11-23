@@ -55,8 +55,12 @@ function stop() {
     logMessage('timer cleared');    
 };
 
-// logs message to the screen and console
-function logMessage(message) {
-    console.log(message);
-    $('.log tbody').prepend('<tr><td>' + message + '</td></tr>')
-}
+(function(global, $) {    
+    // logs message to the screen and console
+    function logMessage(message) {
+        console.log(message);
+        $('.debug tbody').prepend('<tr><td>' + message + '</td></tr>')
+    }
+    // Exposing the function to the global object ('window' passed in the IIFE)
+    global.logMessage = logMessage;
+}(window, jQuery));
